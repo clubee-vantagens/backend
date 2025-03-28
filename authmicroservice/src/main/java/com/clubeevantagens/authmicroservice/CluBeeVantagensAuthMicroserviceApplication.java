@@ -22,5 +22,7 @@ public class CluBeeVantagensAuthMicroserviceApplication implements WebMvcConfigu
 				.allowedMethods("*")
 				.allowedHeaders("*")
 				.allowedOrigins("http://localhost:5173", "http://localhost:8081","http://localhost:3000", "http://192.268.0.50:8081", "http://192.168.0.50:8081");
+
+
 	}
 }
