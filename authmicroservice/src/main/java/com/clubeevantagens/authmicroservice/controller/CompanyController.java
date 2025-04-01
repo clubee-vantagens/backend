@@ -39,6 +39,7 @@ public class CompanyController {
     }
 
     @PutMapping("/me")
+    @PreAuthorize("hasRole('COMPANY')")
     public ResponseEntity<CompanyResponseDto> update(@RequestBody CompanyUpdateRequestDto dto, Authentication authentication) {
         User userDetails = (User) authentication.getPrincipal();
         CompanyResponseDto response =  companyService.update(dto, userDetails.getId());
@@ -53,6 +54,7 @@ public class CompanyController {
     }
 
     @DeleteMapping("/me")
+    @PreAuthorize("hasRole('COMPANY')")
     public ResponseEntity<Void> delete(Authentication authentication) {
         User userDetails = (User) authentication.getPrincipal();
         companyService.delete(userDetails.getId());
@@ -67,6 +69,7 @@ public class CompanyController {
     }
 
     @GetMapping("/me")
+    @PreAuthorize("hasRole('COMPANY')")
     public ResponseEntity<CompanyResponseDto> getById(Authentication authentication) {
         User userDetails = (User) authentication.getPrincipal();
         CompanyResponseDto response =  companyService.getById(userDetails.getId());

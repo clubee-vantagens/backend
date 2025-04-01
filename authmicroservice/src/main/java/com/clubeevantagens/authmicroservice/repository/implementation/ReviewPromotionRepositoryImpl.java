@@ -4,7 +4,6 @@ import com.clubeevantagens.authmicroservice.database.ReviewPromotionJPARepositor
 import com.clubeevantagens.authmicroservice.database.model.ReviewPromotionModel;
 import com.clubeevantagens.authmicroservice.model.ReviewPromotion;
 import com.clubeevantagens.authmicroservice.repository.ReviewPromotionRepository;
-import com.clubeevantagens.authmicroservice.model.Reviews;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

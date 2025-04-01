@@ -71,6 +71,7 @@ public class ClientController {
             content = @Content(schema = @Schema(implementation = ClientResponseDto.class))
     )
     @PutMapping("/me")
+    @PreAuthorize("hasRole('CLIENT')")
     public ResponseEntity<ClientResponseDto> update(@RequestBody ClientUpdateRequestDto dto, Authentication authentication) {
         User userDetails = (User) authentication.getPrincipal();
         ClientResponseDto response =  clientService.update(userDetails.getId(), dto);
@@ -99,6 +100,7 @@ public class ClientController {
     )
     @ApiResponse(responseCode = "204", description = "Conta excluída com sucesso")
     @DeleteMapping("/me")
+    @PreAuthorize("hasRole('CLIENT')")
     public ResponseEntity<String> delete(Authentication authentication) {
         User userDetails = (User) authentication.getPrincipal();
         clientService.delete(userDetails.getId());
@@ -127,6 +129,7 @@ public class ClientController {
             content = @Content(schema = @Schema(implementation = ClientResponseDto.class))
     )
     @GetMapping("/me")
+    @PreAuthorize("hasRole('CLIENT')")
     public ResponseEntity<ClientResponseDto> getById(Authentication authentication) {
         User userDetails = (User) authentication.getPrincipal();
         ClientResponseDto response =  clientService.getById(userDetails.getId());
