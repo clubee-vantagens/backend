@@ -18,8 +18,8 @@ services:
 
   api:
     build:
-      context: backend/authmicroservice
-      dockerfile: backend/authmicroservice/Dockerfile
+      context: ./
+      dockerfile: ./Dockerfile
     container_name: clubee-api
     ports:
       - "8080:8080"

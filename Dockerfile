@@ -5,9 +5,9 @@
 # Estágio de compilação
 FROM maven:3.9.6 AS builder
 WORKDIR /app
-COPY pom.xml .
+COPY authmicroservice/pom.xml .
 RUN mvn dependency:go-offline
-COPY src/ /app/src/
+COPY authmicroservice/src /app/src/
 RUN mvn package -DskipTests -e
 
 # Estágio de construção da imagem
