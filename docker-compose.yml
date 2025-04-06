@@ -17,9 +17,7 @@ services:
       - rede-clubee
 
   api:
-    build:
-      context: backend/authmicroservice
-      dockerfile: backend/authmicroservice/Dockerfile
+    image: clubee/clubee.backend:latest
     container_name: clubee-api
     ports:
       - "8080:8080"
