@@ -3,6 +3,7 @@ package com.clubeevantagens.authmicroservice.infra.repository;
 import com.clubeevantagens.authmicroservice.database.FavoritePromotionJPARepository;
 import com.clubeevantagens.authmicroservice.database.PromotionJPARepository;
 import com.clubeevantagens.authmicroservice.database.model.FavoritePromotionModel;
+import com.clubeevantagens.authmicroservice.database.model.PromotionModel;
 import com.clubeevantagens.authmicroservice.model.Promotion;
 import com.clubeevantagens.authmicroservice.model.dto.GetMostRescuedPromotionsInLast7DaysProjection;
 import com.clubeevantagens.authmicroservice.model.dto.GetPromotionsCreatedInLast7DaysProjection;
@@ -239,5 +240,24 @@ public class PromotionRepositoryImplTest {
     assertThat(result.get(0).promotionName()).isEqualTo("Promotion 15");
     assertThat(result.get(1).promotionName()).isEqualTo("Promotion 14");
     assertThat(result.get(9).promotionName()).isEqualTo("Promotion 6");
+  }
+
+  @Test
+  @DisplayName("Should return all promotions by company id")
+  void shouldReturnAllPromotionsByCompanyId() {
+    for(int i = 1; i <= 3; i++) {
+      Promotion promotion = new Promotion((long) i, 10L, "Promotion " + i, 100, 5.0, 10, 10, 10, LocalDateTime.now(), "url-image-" + i, LocalDateTime.now());
+      promotionRepository.save(promotion);
+    }
+
+    List<Promotion> result = promotionRepository.findAllByCompanyId(10L);
+
+    assertThat(result).hasSize(3);
+    assertThat(result.get(0).getPromotionName()).isEqualTo("Promotion 1");
+    assertThat(result.get(1).getPromotionName()).isEqualTo("Promotion 2");
+    assertThat(result.get(2).getPromotionName()).isEqualTo("Promotion 3");
+    assertThat(result.get(0).getCompanyId()).isEqualTo(10);
+    assertThat(result.get(1).getCompanyId()).isEqualTo(10);
+    assertThat(result.get(2).getCompanyId()).isEqualTo(10);
   }
 }

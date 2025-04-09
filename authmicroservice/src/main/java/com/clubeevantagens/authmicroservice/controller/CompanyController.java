@@ -1,10 +1,18 @@
 package com.clubeevantagens.authmicroservice.controller;
 import com.clubeevantagens.authmicroservice.model.data.User;
+import com.clubeevantagens.authmicroservice.model.dto.GetCompaniesByCategoriesInput;
+import com.clubeevantagens.authmicroservice.model.dto.GetCompaniesByCategoriesOutput;
 import com.clubeevantagens.authmicroservice.model.dto.request.CompanyRequestDto;
 import com.clubeevantagens.authmicroservice.model.dto.request.CompanyUpdateRequestDto;
 import com.clubeevantagens.authmicroservice.model.dto.response.ClientResponseDto;
 import com.clubeevantagens.authmicroservice.model.dto.response.CompanyResponseDto;
 import com.clubeevantagens.authmicroservice.service.CompanyService;
+import com.clubeevantagens.authmicroservice.service.GetCompaniesByCategories;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -22,9 +30,11 @@ import java.util.List;
 @Tag(name = "Company Management", description = "Endpoints para gerenciamento de empresas (usuários comuns e administradores)")
 public class CompanyController {
     private final CompanyService companyService;
+    private final GetCompaniesByCategories getCompaniesByCategories;
 
-    public CompanyController(CompanyService companyService) {
+    public CompanyController(CompanyService companyService, GetCompaniesByCategories getCompaniesByCategories) {
         this.companyService = companyService;
+        this.getCompaniesByCategories = getCompaniesByCategories;
     }
 
     @PostMapping("/register")
@@ -87,6 +97,22 @@ public class CompanyController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CompanyResponseDto> getByCnpj(@PathVariable String cnpj) {
         CompanyResponseDto response =  companyService.getByCnpj(cnpj);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @Operation(
+            summary = "Lista todas as companias baseadas nas preferencias escolhidas pelo usuário",
+            description = "Retorna dados de acordo com as preferencias do usuário"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Lista companhias baseadas nas preferências do usuário",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = GetCompaniesByCategoriesOutput.class)))
+    )
+    @GetMapping("/categories")
+    public ResponseEntity<List<GetCompaniesByCategoriesOutput>> getCompaniesByCategories(Authentication authentication) {
+        User userDetails = (User) authentication.getPrincipal();
+        List<GetCompaniesByCategoriesOutput> response = getCompaniesByCategories.execute(new GetCompaniesByCategoriesInput(userDetails.getId()));
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

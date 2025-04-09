@@ -8,6 +8,8 @@ import com.clubeevantagens.authmicroservice.model.dto.GetPromotionsCreatedInLast
 import com.clubeevantagens.authmicroservice.repository.PromotionRepository;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,5 +65,24 @@ public class PromotionRepositoryImpl implements PromotionRepository {
     if(data.isEmpty()) throw new RuntimeException("Promotion not found");
     PromotionModel model = data.get();
     return new Promotion(model.getPromotionId(), model.getCompanyId(), model.getPromotionName(), model.getPoints(), model.getReviewsRating(), model.getTotalReviews(), model.getTotalRedemptions(), model.getRedemptionsLast7Days(), model.getCycleStart(), model.getPromotionImage(), model.getCreatedAt());
+  }
+
+  @Override
+  public List<Promotion> findAllByCompanyId(Long companyId) {
+    return connection.findAllByCompanyId(companyId)
+            .stream()
+            .map(tuple -> new Promotion(
+                    tuple.get("promotion_id", Long.class),
+                    tuple.get("company_id", Long.class),
+                    tuple.get("promotion_name", String.class),
+                    tuple.get("points", Integer.class),
+                    tuple.get("reviews_rating", Double.class),
+                    tuple.get("total_reviews", Integer.class),
+                    tuple.get("total_redemptions", Integer.class),
+                    tuple.get("redemptions_last_7_days", Integer.class),
+                    ((Timestamp) tuple.get("cycle_start")).toLocalDateTime(),
+                    tuple.get("promotion_image", String.class),
+                    ((Timestamp) tuple.get("created_at")).toLocalDateTime()
+            )).collect(Collectors.toList());
   }
 }

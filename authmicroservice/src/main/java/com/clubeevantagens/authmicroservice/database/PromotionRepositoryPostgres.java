@@ -84,4 +84,6 @@ public interface PromotionRepositoryPostgres extends PromotionJPARepository {
         ORDER BY ranking, redemptions_last_7_days DESC, promotionId
     """, nativeQuery = true)
   List<Tuple> findMostRescuedPromotionsInLast7Days(@Param("clientId") Long clientId);
+  @Query(value = "SELECT * FROM promotions WHERE company_id = :companyId", nativeQuery = true)
+  List<Tuple> findAllByCompanyId(@Param("companyId") Long companyId);
 }

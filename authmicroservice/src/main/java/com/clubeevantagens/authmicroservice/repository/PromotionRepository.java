@@ -11,4 +11,5 @@ public interface PromotionRepository {
   List<GetPromotionsCreatedInLast7DaysProjection> findPromotionsCreatedInLast7Days(Long clientId);
   List<GetMostRescuedPromotionsInLast7DaysProjection> findMostRescuedPromotionsInLast7Days(Long clientId);
   Promotion findByPromotionId(Long promotionId);
+  List<Promotion> findAllByCompanyId(Long companyId);
 }
