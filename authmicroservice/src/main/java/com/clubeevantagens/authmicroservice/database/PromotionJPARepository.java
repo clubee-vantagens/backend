@@ -1,6 +1,7 @@
 package com.clubeevantagens.authmicroservice.database;
 
 import com.clubeevantagens.authmicroservice.database.model.PromotionModel;
+import com.clubeevantagens.authmicroservice.model.Promotion;
 import jakarta.persistence.Tuple;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -12,4 +13,5 @@ import java.util.List;
 public interface PromotionJPARepository extends JpaRepository<PromotionModel, Long> {
   List<Tuple> findPromotionsCreatedInLast7Days(@Param("clientId") Long clientId);
   List<Tuple> findMostRescuedPromotionsInLast7Days(@Param("clientId") Long clientId);
+  List<Tuple> findAllByCompanyId(@Param("companyId") Long companyId);
 }
