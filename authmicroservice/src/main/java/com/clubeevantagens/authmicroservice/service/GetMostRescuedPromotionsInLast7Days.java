@@ -25,7 +25,7 @@ public class GetMostRescuedPromotionsInLast7Days {
               1.5,
               projection.reviewsRating(),
               projection.totalReviews(),
-              projection.points(),
+              projection.category(),
               projection.promotionImage(),
               "company-profile-mock-url",
               projection.isFavorite()

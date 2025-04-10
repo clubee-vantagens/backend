@@ -53,6 +53,7 @@ public class GetCompaniesByCategories {
               rating,
               allReviews.size(),
               "implementar-depois-usando-s3",
+              "implementar-depois-usando-s3",
               projection.isFavorite()
       ));
     }
