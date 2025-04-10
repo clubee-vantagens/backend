@@ -35,10 +35,11 @@ public class PromotionRepositoryImpl implements PromotionRepository {
             .map(tuple -> new GetPromotionsCreatedInLast7DaysProjection(
                     tuple.get("promotionId", Long.class),
                     tuple.get("promotionName", String.class),
-                    tuple.get("points", Integer.class),
+                    tuple.get("category", String.class),
                     tuple.get("reviewsRating", Double.class),
                     tuple.get("totalReviews", Integer.class),
-                    tuple.get("promotionImage", String.class)
+                    tuple.get("promotionImage", String.class),
+                    tuple.get("isFavorite", Boolean.class)
             ))
             .collect(Collectors.toList());
   }
@@ -50,7 +51,7 @@ public class PromotionRepositoryImpl implements PromotionRepository {
             .map(tuple -> new GetMostRescuedPromotionsInLast7DaysProjection(
                     tuple.get("promotionId", Long.class),
                     tuple.get("promotionName", String.class),
-                    tuple.get("points", Integer.class),
+                    tuple.get("category", String.class),
                     tuple.get("reviewsRating", Double.class),
                     tuple.get("totalReviews", Integer.class),
                     tuple.get("promotionImage", String.class),
