@@ -73,6 +73,7 @@ public class Client {
         this.termsOfUse = dto.termsOfUse();
         this.dateTermsOfUse = LocalDateTime.now();
         this.socialName = dto.socialName();
+        this.address = new Address();
         this.address.setCep(dto.cep());
         this.birthDate = dto.birthDate();
         this.photo = dto.photo();

@@ -22,7 +22,7 @@ public record ClientRequestDto(
                 example = "Senha@123",
                 pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$",
                 requiredMode = Schema.RequiredMode.REQUIRED)
-        @Pattern(regexp = "...") String password,
+        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$") String password,
 
         @Schema(description = "Nome completo do cliente",
                 example = "João da Silva",
@@ -38,7 +38,7 @@ public record ClientRequestDto(
                 example = "(11)91234-5678",
                 pattern = "^\\(\\d{2}\\)\\d{5}-\\d{4}$",
                 requiredMode = Schema.RequiredMode.REQUIRED)
-        @NotBlank @Pattern(regexp = "...") String phoneNumber,
+        @NotBlank @Pattern(regexp = "^\\(\\d{2}\\)\\d{5}-\\d{4}$") String phoneNumber,
 
         @Schema(description = "Aceite dos termos de uso",
                 example = "true",
@@ -50,7 +50,7 @@ public record ClientRequestDto(
         @Nullable String socialName,
 
         @Schema(description = "Categorias de interesse (mínimo 3 ou nenhuma)",
-                example = "Alimentação",
+                example = "[\"Alimentação\", \"Papelaria\", \"Moda\"]",
                 requiredMode = Schema.RequiredMode.REQUIRED)
         @ValidCategories
         Set<String> preferences,
@@ -64,11 +64,11 @@ public record ClientRequestDto(
                 example = "https://example.com/photo.jpg")
         String photo,
 
-        @Schema(description = "CEP no formato 99999-999",
+        @Schema(description = "CEP no formato 99999999",
                 example = "01311-000",
-                pattern = "^\\d{5}-\\d{3}$",
+                pattern = "^\\d{8}$",
                 requiredMode = Schema.RequiredMode.REQUIRED)
-        @NotBlank @Pattern(regexp = "...") String cep,
+        @NotBlank @Pattern(regexp = "^\\d{8}$") String cep,
 
         @Schema(description = "Número do endereço",
                 example = "150",
