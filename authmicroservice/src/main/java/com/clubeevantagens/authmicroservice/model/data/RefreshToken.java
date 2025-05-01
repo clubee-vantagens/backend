@@ -15,6 +15,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class RefreshToken {
     @Id
+    @Column(length = 1024)
     private String token;
 
     @ManyToOne(fetch = FetchType.LAZY)
