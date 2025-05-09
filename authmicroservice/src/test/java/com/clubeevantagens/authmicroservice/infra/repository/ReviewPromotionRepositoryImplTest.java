@@ -1,9 +1,8 @@
 package com.clubeevantagens.authmicroservice.infra.repository;
 
-import com.clubeevantagens.authmicroservice.database.ReviewPromotionJPARepository;
-import com.clubeevantagens.authmicroservice.model.ReviewPromotion;
-import com.clubeevantagens.authmicroservice.repository.ReviewPromotionRepository;
-import com.clubeevantagens.authmicroservice.repository.implementation.ReviewPromotionRepositoryImpl;
+import com.clubeevantagens.authmicroservice.infra.database.ReviewPromotionJPARepository;
+import com.clubeevantagens.authmicroservice.domain.entity.ReviewPromotion;
+import com.clubeevantagens.authmicroservice.app.repository.ReviewPromotionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

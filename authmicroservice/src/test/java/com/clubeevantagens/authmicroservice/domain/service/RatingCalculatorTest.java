@@ -1,7 +1,6 @@
 package com.clubeevantagens.authmicroservice.domain.service;
 
-import com.clubeevantagens.authmicroservice.model.RatingCalculator;
-import com.clubeevantagens.authmicroservice.model.ReviewPromotion;
+import com.clubeevantagens.authmicroservice.domain.entity.ReviewPromotion;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

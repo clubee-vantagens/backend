@@ -1,9 +1,9 @@
 package com.clubeevantagens.authmicroservice.application.usecase;
 
-import com.clubeevantagens.authmicroservice.model.Promotion;
-import com.clubeevantagens.authmicroservice.model.dto.CreatePromotionInput;
-import com.clubeevantagens.authmicroservice.repository.PromotionRepository;
-import com.clubeevantagens.authmicroservice.service.CreatePromotion;
+import com.clubeevantagens.authmicroservice.domain.entity.Promotion;
+import com.clubeevantagens.authmicroservice.app.dto.CreatePromotionInput;
+import com.clubeevantagens.authmicroservice.app.repository.PromotionRepository;
+import com.clubeevantagens.authmicroservice.app.usecase.CreatePromotion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

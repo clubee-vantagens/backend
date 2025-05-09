@@ -1,6 +1,5 @@
 package com.clubeevantagens.authmicroservice.domain.entity;
 
-import com.clubeevantagens.authmicroservice.model.FavoritePromotion;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
