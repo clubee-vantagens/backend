@@ -61,8 +61,8 @@ public class JwtValidationFilter extends OncePerRequestFilter {
     }
 
     private void validateUser(Jwt jwt) {
-        String userId = jwt.getClaim("id");
-        userRepository.findById(Long.valueOf(userId))
+        Long userId = jwt.getClaim("id");
+        userRepository.findById(userId)
                 .orElseThrow(() -> new JwtException("User not found"));
     }
 

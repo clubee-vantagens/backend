@@ -24,7 +24,7 @@ public class RabbitMQConfig {
     private String routingKey;
 
     @Bean
-    public Channel connection() {
+    public Channel rabbitMQConnection() {
         try {
             ConnectionFactory factory = new ConnectionFactory();
             factory.setUri(uri);
