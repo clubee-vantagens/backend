@@ -22,7 +22,7 @@ public class JavaMailSenderConfig {
   private String password;
 
   @Bean
-  public JavaMailSenderImpl connection() {
+  public JavaMailSenderImpl javaMailSenderImplConnection() {
     JavaMailSenderImpl connection = new JavaMailSenderImpl();
     connection.setHost(host);
     connection.setPort(port);
