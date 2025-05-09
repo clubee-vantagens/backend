@@ -1,0 +1,88 @@
+package com.clubeevantagens.authmicroservice.infra.repository;
+
+import com.clubeevantagens.authmicroservice.infra.database.PromotionJPARepository;
+import com.clubeevantagens.authmicroservice.infra.database.model.PromotionModel;
+import com.clubeevantagens.authmicroservice.domain.entity.Promotion;
+import com.clubeevantagens.authmicroservice.app.dto.GetMostRescuedPromotionsInLast7DaysProjection;
+import com.clubeevantagens.authmicroservice.app.dto.GetPromotionsCreatedInLast7DaysProjection;
+import com.clubeevantagens.authmicroservice.app.repository.PromotionRepository;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Repository
+public class PromotionRepositoryImpl implements PromotionRepository {
+  private final PromotionJPARepository connection;
+
+  public PromotionRepositoryImpl(PromotionJPARepository connection) {
+    this.connection = connection;
+  }
+
+  @Override
+  public Long save(Promotion promotion) {
+    PromotionModel model = new PromotionModel(promotion.getPromotionId(), promotion.getCompanyId(), promotion.getPromotionName(), promotion.getPoints(), promotion.getReviewsRating(), promotion.getTotalReviews(), promotion.getTotalRedemptions(), promotion.getRedemptionsLast7Days(), promotion.getCycleStart(), promotion.getPromotionImage(), promotion.getCreatedAt());
+    return this.connection.save(model).getPromotionId();
+  }
+
+  @Override
+  public List<GetPromotionsCreatedInLast7DaysProjection> findPromotionsCreatedInLast7Days(Long clientId) {
+    return connection.findPromotionsCreatedInLast7Days(clientId)
+            .stream()
+            .map(tuple -> new GetPromotionsCreatedInLast7DaysProjection(
+                    tuple.get("promotionId", Long.class),
+                    tuple.get("promotionName", String.class),
+                    tuple.get("category", String.class),
+                    tuple.get("reviewsRating", Double.class),
+                    tuple.get("totalReviews", Integer.class),
+                    tuple.get("promotionImage", String.class),
+                    tuple.get("isFavorite", Boolean.class)
+            ))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<GetMostRescuedPromotionsInLast7DaysProjection> findMostRescuedPromotionsInLast7Days(Long clientId) {
+    return connection.findMostRescuedPromotionsInLast7Days(clientId)
+            .stream()
+            .map(tuple -> new GetMostRescuedPromotionsInLast7DaysProjection(
+                    tuple.get("promotionId", Long.class),
+                    tuple.get("promotionName", String.class),
+                    tuple.get("category", String.class),
+                    tuple.get("reviewsRating", Double.class),
+                    tuple.get("totalReviews", Integer.class),
+                    tuple.get("promotionImage", String.class),
+                    tuple.get("isFavorite", Boolean.class)
+            ))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public Promotion findByPromotionId(Long promotionId) {
+    Optional<PromotionModel> data = this.connection.findById(promotionId);
+    if(data.isEmpty()) throw new RuntimeException("Promotion not found");
+    PromotionModel model = data.get();
+    return new Promotion(model.getPromotionId(), model.getCompanyId(), model.getPromotionName(), model.getPoints(), model.getReviewsRating(), model.getTotalReviews(), model.getTotalRedemptions(), model.getRedemptionsLast7Days(), model.getCycleStart(), model.getPromotionImage(), model.getCreatedAt());
+  }
+
+  @Override
+  public List<Promotion> findAllByCompanyId(Long companyId) {
+    return connection.findAllByCompanyId(companyId)
+            .stream()
+            .map(tuple -> new Promotion(
+                    tuple.get("promotion_id", Long.class),
+                    tuple.get("company_id", Long.class),
+                    tuple.get("promotion_name", String.class),
+                    tuple.get("points", Integer.class),
+                    tuple.get("reviews_rating", Double.class),
+                    tuple.get("total_reviews", Integer.class),
+                    tuple.get("total_redemptions", Integer.class),
+                    tuple.get("redemptions_last_7_days", Integer.class),
+                    ((Timestamp) tuple.get("cycle_start")).toLocalDateTime(),
+                    tuple.get("promotion_image", String.class),
+                    ((Timestamp) tuple.get("created_at")).toLocalDateTime()
+            )).collect(Collectors.toList());
+  }
+}

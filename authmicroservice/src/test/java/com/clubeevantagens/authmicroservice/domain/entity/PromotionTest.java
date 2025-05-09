@@ -1,6 +1,5 @@
 package com.clubeevantagens.authmicroservice.domain.entity;
 
-import com.clubeevantagens.authmicroservice.model.Promotion;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

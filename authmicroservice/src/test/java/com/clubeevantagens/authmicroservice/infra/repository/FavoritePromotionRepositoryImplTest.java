@@ -1,11 +1,9 @@
 package com.clubeevantagens.authmicroservice.infra.repository;
 
-import com.clubeevantagens.authmicroservice.database.FavoriteCompanyJPARepository;
-import com.clubeevantagens.authmicroservice.database.FavoritePromotionJPARepository;
-import com.clubeevantagens.authmicroservice.model.FavoriteCompany;
-import com.clubeevantagens.authmicroservice.model.FavoritePromotion;
-import com.clubeevantagens.authmicroservice.repository.implementation.FavoriteCompanyRepositoryImpl;
-import com.clubeevantagens.authmicroservice.repository.implementation.FavoritePromotionRepositoryImpl;
+import com.clubeevantagens.authmicroservice.infra.database.FavoriteCompanyJPARepository;
+import com.clubeevantagens.authmicroservice.infra.database.FavoritePromotionJPARepository;
+import com.clubeevantagens.authmicroservice.domain.entity.FavoriteCompany;
+import com.clubeevantagens.authmicroservice.domain.entity.FavoritePromotion;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

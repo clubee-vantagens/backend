@@ -1,11 +1,11 @@
 package com.clubeevantagens.authmicroservice.application.usecase;
 
-import com.clubeevantagens.authmicroservice.model.Promotion;
-import com.clubeevantagens.authmicroservice.model.ReviewPromotion;
-import com.clubeevantagens.authmicroservice.model.dto.CreateReviewInput;
-import com.clubeevantagens.authmicroservice.repository.PromotionRepository;
-import com.clubeevantagens.authmicroservice.repository.ReviewPromotionRepository;
-import com.clubeevantagens.authmicroservice.service.CreateReview;
+import com.clubeevantagens.authmicroservice.domain.entity.Promotion;
+import com.clubeevantagens.authmicroservice.domain.entity.ReviewPromotion;
+import com.clubeevantagens.authmicroservice.app.dto.CreateReviewInput;
+import com.clubeevantagens.authmicroservice.app.repository.PromotionRepository;
+import com.clubeevantagens.authmicroservice.app.repository.ReviewPromotionRepository;
+import com.clubeevantagens.authmicroservice.app.usecase.CreateReview;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

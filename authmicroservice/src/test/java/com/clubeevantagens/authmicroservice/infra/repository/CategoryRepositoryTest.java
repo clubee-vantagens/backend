@@ -1,8 +1,8 @@
 package com.clubeevantagens.authmicroservice.infra.repository;
 
-import com.clubeevantagens.authmicroservice.model.data.Category;
-import com.clubeevantagens.authmicroservice.model.enums.CategoryType;
-import com.clubeevantagens.authmicroservice.repository.CategoryRepository;
+import com.clubeevantagens.authmicroservice.domain.entity.Category;
+import com.clubeevantagens.authmicroservice.domain.enums.CategoryType;
+import com.clubeevantagens.authmicroservice.app.repository.CategoryRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

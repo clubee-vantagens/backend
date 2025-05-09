@@ -1,8 +1,8 @@
 package com.clubeevantagens.authmicroservice.application.usecase;
 
-import com.clubeevantagens.authmicroservice.model.dto.GetTotalFavoritesInput;
-import com.clubeevantagens.authmicroservice.repository.FavoritePromotionRepository;
-import com.clubeevantagens.authmicroservice.service.GetTotalFavorites;
+import com.clubeevantagens.authmicroservice.app.dto.GetTotalFavoritesInput;
+import com.clubeevantagens.authmicroservice.app.repository.FavoritePromotionRepository;
+import com.clubeevantagens.authmicroservice.app.usecase.GetTotalFavorites;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

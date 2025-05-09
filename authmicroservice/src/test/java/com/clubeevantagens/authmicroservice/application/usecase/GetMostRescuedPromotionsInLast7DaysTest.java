@@ -1,9 +1,11 @@
 package com.clubeevantagens.authmicroservice.application.usecase;
 
-import com.clubeevantagens.authmicroservice.model.dto.*;
-import com.clubeevantagens.authmicroservice.model.enums.CategoryType;
-import com.clubeevantagens.authmicroservice.repository.PromotionRepository;
-import com.clubeevantagens.authmicroservice.service.GetMostRescuedPromotionsInLast7Days;
+import com.clubeevantagens.authmicroservice.app.dto.GetMostRescuedPromotionsInLast7DaysInput;
+import com.clubeevantagens.authmicroservice.app.dto.GetMostRescuedPromotionsInLast7DaysOutput;
+import com.clubeevantagens.authmicroservice.app.dto.GetMostRescuedPromotionsInLast7DaysProjection;
+import com.clubeevantagens.authmicroservice.domain.enums.CategoryType;
+import com.clubeevantagens.authmicroservice.app.repository.PromotionRepository;
+import com.clubeevantagens.authmicroservice.app.usecase.GetMostRescuedPromotionsInLast7Days;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

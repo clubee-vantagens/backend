@@ -1,9 +1,9 @@
 package com.clubeevantagens.authmicroservice.application.usecase;
 
-import com.clubeevantagens.authmicroservice.model.FavoriteCompany;
-import com.clubeevantagens.authmicroservice.model.dto.CreateFavoriteCompanyInput;
-import com.clubeevantagens.authmicroservice.repository.FavoriteCompanyRepository;
-import com.clubeevantagens.authmicroservice.service.CreateFavoriteCompany;
+import com.clubeevantagens.authmicroservice.domain.entity.FavoriteCompany;
+import com.clubeevantagens.authmicroservice.app.dto.CreateFavoriteCompanyInput;
+import com.clubeevantagens.authmicroservice.app.repository.FavoriteCompanyRepository;
+import com.clubeevantagens.authmicroservice.app.usecase.CreateFavoriteCompany;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
