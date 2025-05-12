@@ -10,7 +10,7 @@ RUN mvn package -DskipTests -e
 FROM openjdk:21
 WORKDIR /app
 
-ARG SPRING_PROFILES_ACTIVE=dev
+ENV SPRING_PROFILES_ACTIVE=prod
 
 COPY --from=builder /app/target/CluBee-Vantagens-0.0.1-SNAPSHOT.jar .
 
