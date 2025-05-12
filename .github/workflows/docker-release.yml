@@ -34,9 +34,6 @@ jobs:
         run: |
           docker build \
             --build-arg SPRING_PROFILES_ACTIVE=prod \
-            --build-arg POSTGRES_URL=${{ secrets.POSTGRES_URL }} \
-            --build-arg POSTGRES_USER=${{ secrets.POSTGRES_USER }} \
-            --build-arg POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} \
             -t ${{ secrets.DOCKER_USERNAME }}/clubee.backend:${{ env.version }} \
             -f authmicroservice/Dockerfile authmicroservice/
 

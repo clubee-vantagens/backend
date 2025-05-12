@@ -1,0 +1,58 @@
+services:
+  api:
+    container_name: clubee-api
+    build:
+      context: ../authmicroservice
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      db:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - rede-clubee
+
+  db:
+    image: postgres:15-alpine
+    container_name: db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: clubee
+      POSTGRES_URL: jdbc:postgresql://db:5432/clubee
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: IhYdXSBNdv6beh3fmlcGSTPIlk3swjtDHVsQTUw19JVKQw
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rede-clubee
+
+  rabbitmq:
+    image: rabbitmq:3.13.7-management-alpine
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - rede-clubee
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+
+networks:
+  rede-clubee:
+    driver: bridge

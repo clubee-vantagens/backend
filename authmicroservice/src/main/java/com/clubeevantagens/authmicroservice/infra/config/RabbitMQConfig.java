@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Configuration
 public class RabbitMQConfig {
-    @Value("${spring.rabbitmq.address}")
+    @Value("${spring.rabbitmq.addresses}")
     private String uri;
 
     @Value("${email.exchange.name}")
