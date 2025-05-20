@@ -30,7 +30,7 @@ public record ClientRequestDto(
         @NotBlank String name,
 
         @Schema(description = "CPF válido",
-                example = "123.456.789-09",
+                example = "12345678909",
                 requiredMode = Schema.RequiredMode.REQUIRED)
         @CPF @NotBlank String cpf,
 
@@ -50,7 +50,7 @@ public record ClientRequestDto(
         @Nullable String socialName,
 
         @Schema(description = "Categorias de interesse (mínimo 3 ou nenhuma)",
-                example = "[\"Alimentação\", \"Papelaria\", \"Moda\"]",
+                example = "[\"Alimentação\", \"Papelaria\", \"Livraria\"]",
                 requiredMode = Schema.RequiredMode.REQUIRED)
         @ValidCategories
         Set<String> preferences,
@@ -65,7 +65,7 @@ public record ClientRequestDto(
         String photo,
 
         @Schema(description = "CEP no formato 99999999",
-                example = "01311-000",
+                example = "01311000",
                 pattern = "^\\d{8}$",
                 requiredMode = Schema.RequiredMode.REQUIRED)
         @NotBlank @Pattern(regexp = "^\\d{8}$") String cep,
